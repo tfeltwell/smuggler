@@ -9,3 +9,4 @@ if __name__ == "__main__":
 			calendar.update()
 			demand.update()
 			raw_input() # This is just to manually step through the day
+			print "-----"
