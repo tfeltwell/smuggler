@@ -11,7 +11,6 @@ class daySystem:
 
 	def update(self):
 		self.dayUp()
-		self.printDate()
 
 	def dayUp(self):
 		if self.day > self.monthLength:
@@ -33,3 +32,6 @@ class daySystem:
 
 	def printDate(self):
 		print "Day:",self.day,"Month:",self.month,"Year",self.year 
+
+	def getDate(self):
+		return "Day: "+str(self.day)+" Month: "+str(self.month)+" Year: "+str(self.year)
