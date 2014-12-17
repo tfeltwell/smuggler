@@ -16,19 +16,21 @@ class demander:
 		self.maxDemand = 100
 
 	def update(self):
-		product = random.randint(0,5)
-		self.increaseDemand(product)
-		self.updatePrice(product)
+		# Roll for a chance to increase demand
+		modDemand = random.randint(0,100)
+		if modDemand > 75:
+			product = random.randint(0,5)
+			self.increaseDemand(product)
+			self.updatePrice(product)
 
 	def increaseDemand(self,product):
 		if self.demands[product] is not self.maxDemand:
 			self.demands[product] += 1
 			print "Demand for",self.goods[product],"increased"
-		self.printDemands()
 
 	def updatePrice(self, product):
-		print "Calculated price:",str((float(self.demands[product])/100)+1*self.basePrice[product]),"base price",self.basePrice[product],"demand",self.demands[product]
-		# self.price[product] = (float(self.demands[product])/100)+1*self.basePrice[product]
+		self.price[product] = float(self.basePrice[product]*((float(self.demands[product])/100)+1))
+		print self.goods[product],"changed price to",str(self.price[product])
 
 	def printDemands(self):
 		print "\nToday's demands are as follows:"
