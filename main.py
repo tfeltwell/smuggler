@@ -15,15 +15,17 @@ if __name__ == "__main__":
 	splash = pygame.image.load("splash.jpg")
 	splashrect = splash.get_rect()
 	DISPLAYSURF.blit(splash,splashrect)
+	background = pygame.image.load("assets/map.png")
+	backgroundrect = splash.get_rect()
 	pygame.display.update()
 
 	# Game system variables
 	calendar = daySystem.daySystem()
-	demand = demander.demander(calendar)
+	# demand = demander.demander(calendar)
 	player = player.player()
 	frameCount = 0
 	clock = pygame.time.Clock()
-	# Load in the goods from a txt file
+	# Generate goods
 	goodSpriteLocation = 'assets/goods/'
 	goodsList = []
 	f = open("goods.txt",'r')
@@ -35,8 +37,12 @@ if __name__ == "__main__":
 			print 'Invalid input',i
 	print 'Goods:'
 	for i in goodsList:
-		i.setSprite(pygame.image.load(goodSpriteLocation+'good.png'))
+		i.setSprite(pygame.image.load(goodSpriteLocation+i.name+'.png'))
 		print i.name,'at',i.basePrice
+
+	# Generate initial characters
+
+	#TODO: Load everything from text files to create characters
 
 
 	# for i in range(5):
@@ -58,10 +64,12 @@ if __name__ == "__main__":
 				sys.exit()
 
 		if frameCount >= 100: #Integrate this with the pygame clock
-			calendar.printDate()
-
+			# Rendering
+			# Background stuff
 			DISPLAYSURF.fill(backgroundColor)
+			DISPLAYSURF.blit(background,(0,0))
 			DISPLAYSURF.blit(title,((WIDTH//2)-title.get_width()//2,0))
+			# Text overlays
 			demandsStr = ""
 			# for i in range(len(demand.goods)):
 			# 	demandsStr += str(demand.goods[i])+": "+str(demand.price[i])+" | "
@@ -72,9 +80,11 @@ if __name__ == "__main__":
 			DISPLAYSURF.blit(dateUI,(0,(HEIGHT-dateUI.get_height())))
 			DISPLAYSURF.blit(capital,((WIDTH-capital.get_width()-20),(HEIGHT-capital.get_height())))
 			# DISPLAYSURF.blit(dateUI,(((WIDTH//2)-dateUI.get_width()//2,((HEIGHT/)-dateUI.get_height()//2))
+			# Objects
+			for count, i in enumerate(goodsList):
+				DISPLAYSURF.blit(i.sprite,(((70*count)+100),490))
 			pygame.display.update()
 			calendar.update()
-			demand.update()
 			player.update()
 
 			frameCount = 0
