@@ -1,0 +1,11 @@
+labourer
+farmer
+ploughman
+wheelwright
+smith
+publican
+peasant
+fisherman
+pilot
+stablehand
+market-trader
