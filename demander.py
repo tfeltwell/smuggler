@@ -6,11 +6,7 @@ class demander:
 		print 'Demander initialised'
 		self.calSystem = calendar # Handle on the calendar object
 
-		# Items and their demand
-		self.goods = ["cheese","brandy","gin","tobacco","tea","wool","salt"]
-		self.demands = [0,0,0,0,0,0]
-		self.basePrice = [1.0,3.0,5.0,8.0,7.0,15.0]
-		self.price = [1.0,3.0,5.0,8.0,7.0,15.0]
+		# Currently does nothing...
 
 		# Demand system vars
 		self.maxDemand = 100

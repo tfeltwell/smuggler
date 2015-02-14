@@ -1,6 +1,6 @@
 import pygame, sys
 from pygame.locals import *
-import daySystem, demander, player
+import daySystem, demander, player, good
 
 if __name__ == "__main__":
 
@@ -23,6 +23,26 @@ if __name__ == "__main__":
 	player = player.player()
 	frameCount = 0
 	clock = pygame.time.Clock()
+	# Load in the goods from a txt file
+	goodSpriteLocation = 'assets/goods/'
+	goodsList = []
+	f = open("goods.txt",'r')
+	for i in f:
+		parsed = i.strip('\n').split(',')
+		if len(parsed) is 3:
+			goodsList.append(good.good(parsed[0],parsed[1],parsed[2]))
+		else:
+			print 'Invalid input',i
+	print 'Goods:'
+	for i in goodsList:
+		i.setSprite(pygame.image.load(goodSpriteLocation+'good.png'))
+		print i.name,'at',i.basePrice
+
+
+	# for i in range(5):
+	# 	goodsList.append(good.good(str(i),10))
+	# # print names for debugging
+
 
 	titleFont = pygame.font.SysFont(None, 72)
 	textFont = pygame.font.SysFont(None,30)
@@ -38,15 +58,13 @@ if __name__ == "__main__":
 				sys.exit()
 
 		if frameCount >= 100: #Integrate this with the pygame clock
-			calendar.update()
-			demand.update()
-			player.update()
+			calendar.printDate()
 
 			DISPLAYSURF.fill(backgroundColor)
 			DISPLAYSURF.blit(title,((WIDTH//2)-title.get_width()//2,0))
 			demandsStr = ""
-			for i in range(len(demand.goods)):
-				demandsStr += str(demand.goods[i])+": "+str(demand.price[i])+" | "
+			# for i in range(len(demand.goods)):
+			# 	demandsStr += str(demand.goods[i])+": "+str(demand.price[i])+" | "
 			demands = textFont.render(demandsStr, True, (fontBlk))
 			dateUI = textFont.render(calendar.getDate(), True, (fontBlk))
 			capital = textFont.render(("Capital: "+str(player.capital)), True, (fontBlk))
@@ -55,6 +73,10 @@ if __name__ == "__main__":
 			DISPLAYSURF.blit(capital,((WIDTH-capital.get_width()-20),(HEIGHT-capital.get_height())))
 			# DISPLAYSURF.blit(dateUI,(((WIDTH//2)-dateUI.get_width()//2,((HEIGHT/)-dateUI.get_height()//2))
 			pygame.display.update()
+			calendar.update()
+			demand.update()
+			player.update()
+
 			frameCount = 0
 		else:
 			frameCount += 1

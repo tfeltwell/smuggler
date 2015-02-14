@@ -1,0 +1,9 @@
+tea,10,3
+wool,5,1
+salt,20,4
+cheese,20,3
+tobacco,30,5
+brandy,20,6
+gin,20,6
+gunpowder,50,10
+cloth,10,5
