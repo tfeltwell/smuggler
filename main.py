@@ -79,9 +79,9 @@ if __name__ == "__main__":
 		characterList[-1].setSprite(pygame.image.load("assets/character.png"))
 		print characterList[-1].getDetails()
 
-	titleFont = pygame.font.SysFont(None, 72)
+	titleFont = pygame.font.SysFont(None,72)
 	textFont = pygame.font.SysFont(None,30)
-	title = titleFont.render("Sussex Smuggler", True, (45, 46, 40))
+	title = titleFont.render("Sussex Smuggler",True,(45,46,40))
 
 	while True:
 		for event in pygame.event.get():
@@ -117,7 +117,6 @@ if __name__ == "__main__":
 			for count, i in enumerate(characterList):
 				for j in settlementList:
 					if j.getName() is characterList[count].getCurrentLocation():
-						print j.getX(), j.getY()
 						DISPLAYSURF.blit(i.sprite,(j.getX(),j.getY()))
 			pygame.display.update()
 			calendar.update()

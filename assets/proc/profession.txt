@@ -11,3 +11,5 @@ fisherman
 pilot
 stablehand
 trader
+carpenter
+cattle-drover

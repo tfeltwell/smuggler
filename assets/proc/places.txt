@@ -13,3 +13,6 @@ Brown Bread Street,510,125
 Willington,390,260
 Ore,735,168
 Cooden,523,275
+Haywards Heath,60,115
+Peacehaven,200,380
+Herstmonceux,260,115

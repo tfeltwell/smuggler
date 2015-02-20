@@ -1,5 +1,7 @@
-Main mechanic: Buying and selling good from northern france/Europe. Based on desires of London and rest of UK will dictate the price you will get. Smuggling takes a few days (increasing to weeks for large amounts), so desire may change. 
+Smuggling game set circa ~1500
 
-Calendar approximates demand for products (more Brandy in winter).
+Overall idea: you operate both parts of the smuggling operation: 1) recruiting, managing and position the on-shore operation 2) Monitoring and purchasing goods from the continent / off shore based on demand in England. 
 
-- Code that up in Python and it should be a bit of fun.
+To do: 
+* Implement recruitment mechanic (pygame onClick() actions)
+* Demand / price system needs refining so prices go up and down based on market demand
