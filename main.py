@@ -12,7 +12,7 @@ if __name__ == "__main__":
 	pygame.display.set_caption("Sussex Smuggler")
 	backgroundColor = 212,203,188
 	fontBlk = 45,46,40
-	splash = pygame.image.load("splash.jpg")
+	splash = pygame.image.load("assets/splash.jpg")
 	splashrect = splash.get_rect()
 	DISPLAYSURF.blit(splash,splashrect)
 	background = pygame.image.load("assets/map.png")
