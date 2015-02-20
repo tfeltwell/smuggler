@@ -1,6 +1,6 @@
-import pygame, sys
+import pygame, sys, random
 from pygame.locals import *
-import daySystem, demander, player, good
+import daySystem, demander, player, good, character
 
 if __name__ == "__main__":
 
@@ -28,6 +28,7 @@ if __name__ == "__main__":
 	# Generate goods
 	goodSpriteLocation = 'assets/goods/'
 	goodsList = []
+	characterList = []
 	f = open("goods.txt",'r')
 	for i in f:
 		parsed = i.strip('\n').split(',')
@@ -39,11 +40,41 @@ if __name__ == "__main__":
 	for i in goodsList:
 		i.setSprite(pygame.image.load(goodSpriteLocation+i.name+'.png'))
 		print i.name,'at',i.basePrice
+	f.close()
 
 	# Generate initial characters
 
-	#TODO: Load everything from text files to create characters
+	# Load character data from text files
+	f = open("firstnames.txt",'r')
+	firstNames = []
+	for i in f:
+		firstNames.append(i.strip('\n'))
+	f.close()
+	f = open("lastnames.txt",'r')
+	lastNames = []
+	for i in f:
+		lastNames.append(i.strip('\n'))
+	f.close()
+	f = open("profession.txt",'r')
+	professionList = []
+	for i in f:
+		professionList.append(i.strip('\n'))
+	f.close()
+	f = open("assets/proc/places.txt",'r')
+	places = []
+	for i in f:
+		places.append(i.strip('\n'))
+	f.close()
 
+	for i in range(10): #Create 10 characters
+		first = firstNames[random.randint(0,len(firstNames)-1)]
+		last = lastNames[random.randint(0,len(lastNames)-1)]
+		profession = professionList[random.randint(0,len(professionList)-1)]
+		home = places[random.randint(0,len(places)-1)]
+		characterList.append(character.character(first,last,profession,home))
+		print characterList[-1].getDetails()
+
+	# print firstNames[random.randint(0,len(firstNames)-1)],lastNames[random.randint(0,len(lastNames)-1)],'-',profession[random.randint(0,len(profession)-1)]
 
 	# for i in range(5):
 	# 	goodsList.append(good.good(str(i),10))

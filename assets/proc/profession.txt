@@ -3,9 +3,11 @@ farmer
 ploughman
 wheelwright
 smith
+charcoal-burner
+shepard
 publican
 peasant
 fisherman
 pilot
 stablehand
-market-trader
+trader
