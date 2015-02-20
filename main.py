@@ -1,6 +1,6 @@
 import pygame, sys, random
 from pygame.locals import *
-import daySystem, demander, player, good, character
+import daySystem, demander, player, good, character, settlement
 
 if __name__ == "__main__":
 
@@ -29,6 +29,17 @@ if __name__ == "__main__":
 	goodSpriteLocation = 'assets/goods/'
 	goodsList = []
 	characterList = []
+
+	#Generate places
+	print 'places'
+	f = open("assets/proc/places.txt")
+	settlementList = []
+	for i in f:
+		parts = i.strip('\n').split(',')
+		if len(parts) is 3:
+			settlementList.append(settlement.settlement(parts[0],parts[1],parts[2]))
+			print settlementList[-1].getDetails() 
+
 	f = open("assets/proc/goods.txt",'r')
 	for i in f:
 		parsed = i.strip('\n').split(',')
@@ -58,17 +69,12 @@ if __name__ == "__main__":
 	for i in f:
 		professionList.append(i.strip('\n'))
 	f.close()
-	f = open("assets/proc/places.txt",'r')
-	places = []
-	for i in f:
-		places.append(i.strip('\n'))
-	f.close()
 
 	for i in range(10): #Create 10 characters
 		first = firstNames[random.randint(0,len(firstNames)-1)]
 		last = lastNames[random.randint(0,len(lastNames)-1)]
 		profession = professionList[random.randint(0,len(professionList)-1)]
-		home = places[random.randint(0,len(places)-1)]
+		home = settlementList[random.randint(0,len(settlementList)-1)].getName()
 		characterList.append(character.character(first,last,profession,home))
 		characterList[-1].setSprite(pygame.image.load("assets/character.png"))
 		print characterList[-1].getDetails()
@@ -107,8 +113,12 @@ if __name__ == "__main__":
 			for count, i in enumerate(goodsList):
 				DISPLAYSURF.blit(i.sprite,(((70*count)+100),490))
 
+			# This needs sorting as it's quite inefficient
 			for count, i in enumerate(characterList):
-				DISPLAYSURF.blit(i.sprite,(10,10))
+				for j in settlementList:
+					if j.getName() is characterList[count].getCurrentLocation():
+						print j.getX(), j.getY()
+						DISPLAYSURF.blit(i.sprite,(j.getX(),j.getY()))
 			pygame.display.update()
 			calendar.update()
 			player.update()

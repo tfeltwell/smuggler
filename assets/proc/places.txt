@@ -1,15 +1,15 @@
-Battle
-Hastings
-Catsfield
-Crowhurst
-Ninfield
-Bexhill
-Ratton
-Beachy Head
-Normans Bay
-Chiddingly
-Golden Cross
-Brown Bread Street
-Willington
-Ore
-Cooden
+Battle,610,64
+Hastings,644,255
+Catsfield,590,142
+Crowhurst,611,102
+Ninfield,625,138
+Bexhill,532,285
+Ratton,430,268
+Beachy Head,400,422
+Normans Bay,510,280
+Chiddingly,320,200
+Golden Cross,200,77
+Brown Bread Street,510,125
+Willington,390,260
+Ore,735,168
+Cooden,523,275

@@ -5,6 +5,7 @@ class character:
 		self.lastName = lastName
 		self.profession = profession
 		self.home = home
+		self.currentLocation = self.home
 
 	def setSprite(self, loadedImage):
 		self.sprite = loadedImage
@@ -21,6 +22,9 @@ class character:
 
 	def getHome(self):
 		return self.home
+
+	def getCurrentLocation(self):
+		return self.currentLocation
 
 	def getDetails(self):
 		return (self.firstName, self.lastName, self.profession, self.home)
