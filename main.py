@@ -29,7 +29,7 @@ if __name__ == "__main__":
 	goodSpriteLocation = 'assets/goods/'
 	goodsList = []
 	characterList = []
-	f = open("goods.txt",'r')
+	f = open("assets/proc/goods.txt",'r')
 	for i in f:
 		parsed = i.strip('\n').split(',')
 		if len(parsed) is 3:
@@ -43,19 +43,17 @@ if __name__ == "__main__":
 	f.close()
 
 	# Generate initial characters
-
-	# Load character data from text files
-	f = open("firstnames.txt",'r')
+	f = open("assets/proc/firstnames.txt",'r')
 	firstNames = []
 	for i in f:
 		firstNames.append(i.strip('\n'))
 	f.close()
-	f = open("lastnames.txt",'r')
+	f = open("assets/proc/lastnames.txt",'r')
 	lastNames = []
 	for i in f:
 		lastNames.append(i.strip('\n'))
 	f.close()
-	f = open("profession.txt",'r')
+	f = open("assets/proc/profession.txt",'r')
 	professionList = []
 	for i in f:
 		professionList.append(i.strip('\n'))
@@ -72,14 +70,8 @@ if __name__ == "__main__":
 		profession = professionList[random.randint(0,len(professionList)-1)]
 		home = places[random.randint(0,len(places)-1)]
 		characterList.append(character.character(first,last,profession,home))
+		characterList[-1].setSprite(pygame.image.load("assets/character.png"))
 		print characterList[-1].getDetails()
-
-	# print firstNames[random.randint(0,len(firstNames)-1)],lastNames[random.randint(0,len(lastNames)-1)],'-',profession[random.randint(0,len(profession)-1)]
-
-	# for i in range(5):
-	# 	goodsList.append(good.good(str(i),10))
-	# # print names for debugging
-
 
 	titleFont = pygame.font.SysFont(None, 72)
 	textFont = pygame.font.SysFont(None,30)
@@ -99,7 +91,7 @@ if __name__ == "__main__":
 			# Background stuff
 			DISPLAYSURF.fill(backgroundColor)
 			DISPLAYSURF.blit(background,(0,0))
-			DISPLAYSURF.blit(title,((WIDTH//2)-title.get_width()//2,0))
+			# DISPLAYSURF.blit(title,((WIDTH//2)-title.get_width()//2,0))
 			# Text overlays
 			demandsStr = ""
 			# for i in range(len(demand.goods)):
@@ -114,6 +106,9 @@ if __name__ == "__main__":
 			# Objects
 			for count, i in enumerate(goodsList):
 				DISPLAYSURF.blit(i.sprite,(((70*count)+100),490))
+
+			for count, i in enumerate(characterList):
+				DISPLAYSURF.blit(i.sprite,(10,10))
 			pygame.display.update()
 			calendar.update()
 			player.update()

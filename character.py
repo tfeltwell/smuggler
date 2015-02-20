@@ -6,6 +6,10 @@ class character:
 		self.profession = profession
 		self.home = home
 
+	def setSprite(self, loadedImage):
+		self.sprite = loadedImage
+		self.spriteRect = self.sprite.get_rect()
+
 	def update():
 		print "Updating character"
 
